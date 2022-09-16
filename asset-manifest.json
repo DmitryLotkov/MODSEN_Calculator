@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/MODSEN_Calculator/static/css/main.073c9b0a.css",
+    "main.js": "/MODSEN_Calculator/static/js/main.b595f742.js",
+    "static/js/787.a5eee593.chunk.js": "/MODSEN_Calculator/static/js/787.a5eee593.chunk.js",
+    "static/media/logo.svg": "/MODSEN_Calculator/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/MODSEN_Calculator/index.html",
+    "main.073c9b0a.css.map": "/MODSEN_Calculator/static/css/main.073c9b0a.css.map",
+    "main.b595f742.js.map": "/MODSEN_Calculator/static/js/main.b595f742.js.map",
+    "787.a5eee593.chunk.js.map": "/MODSEN_Calculator/static/js/787.a5eee593.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.b595f742.js"
+  ]
+}
