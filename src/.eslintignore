@@ -1,7 +1,0 @@
-.git
-.vscode
-node_modules
-dist
-src/reportWebVitals.ts
-src/globalStyles.ts
-src/theme.js

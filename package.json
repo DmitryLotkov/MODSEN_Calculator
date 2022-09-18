@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
     "@types/jest": "^27.0.1",
@@ -13,8 +13,7 @@
     "@types/react-dom": "^18.0.0",
     "@types/react-router-dom": "^5.3.3",
     "@types/uuid": "^8.3.4",
-    "eslint-config-standard": "^17.0.0",
-    "eslint-config-standard-react": "^11.0.1",
+    "eslint-config-prettier": "^8.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-loader-spinner": "^5.3.4",
@@ -23,16 +22,22 @@
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
     "styled-components": "^5.3.5",
-    "typescript": "^4.4.2",
+    "typescript": "^4.8.3",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "node_modules/.bin/react-scripts start",
+    "build": "node_modules/.bin/react-scripts build",
+    "test": "node_modules/.bin/react-scripts test",
+    "eject": "node_modules/.bin/react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "node_modules/.bin/gh-pages -d build",
+    "elint": "node_modules/.bin/eslint --fix --ext .js,.jsx,.ts,.tsx",
+    "eslint:fix": "node_modules/.bin/eslint --fix src --ext .js,.jsx,.ts,.tsx",
+    "cypress": "node_modules/.bin/start-server-and-test start http://localhost:3000 cypress:open",
+    "cypress:open": "node_modules/.bin/cypress open",
+    "cypress:run": "node_modules/.bin/cypress run",
+    "cypress:test": "node_modules/.bin/start-server-and-test start http://localhost:3000 cypress:run"
   },
   "eslintConfig": {
     "extends": [
@@ -53,18 +58,52 @@
     ]
   },
   "devDependencies": {
+    "@babel/cli": "^7.18.10",
     "@babel/core": "^7.19.1",
     "@babel/eslint-parser": "^7.19.1",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-proposal-optional-chaining": "^7.18.9",
+    "@babel/plugin-transform-runtime": "^7.19.1",
+    "@babel/preset-env": "^7.19.1",
+    "@babel/preset-react": "^7.18.6",
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
     "@types/styled-components": "^5.1.26",
     "@typescript-eslint/eslint-plugin": "^5.37.0",
     "@typescript-eslint/parser": "^5.37.0",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.5",
+    "babel-plugin-styled-components": "^2.0.7",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.7.1",
+    "cypress": "^10.8.0",
     "eslint": "^8.23.1",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier-react": "^0.0.24",
+    "eslint-config-standard-react": "^11.0.1",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest-dom": "^4.0.2",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.0.1",
     "eslint-plugin-react": "^7.31.8",
     "eslint-plugin-react-hooks": "^4.6.0",
     "gh-pages": "^4.0.0",
-    "sass": "^1.54.9"
+    "html-webpack-plugin": "^5.5.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier-eslint": "^15.0.1",
+    "sass": "^1.54.9",
+    "start-server-and-test": "^1.14.0",
+    "style-loader": "^3.3.1",
+    "terser-webpack-plugin": "^5.3.6"
   },
   "resolutions": {
-    "styled-components": "^5"
+    "styled-components": "^5",
+    "@types/react": "18.0.0",
+    "@types/react-dom": "18.0.0"
   }
 }

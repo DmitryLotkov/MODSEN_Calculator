@@ -1,0 +1,9 @@
+.git
+.vscode
+node_modules
+dist
+reportWebVitals.ts
+globalStyles.ts
+theme.js
+index.tsx
+App.test.tsx

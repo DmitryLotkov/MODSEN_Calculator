@@ -1,15 +1,24 @@
 {
-  "extends": ["eslint:recommended", "standard-react"],
-  "plugins": ["@typescript-eslint", "react-hooks"],
+  "extends": ["eslint:recommended", "standard-react", "plugin:prettier/recommended", "plugin:react/recommended"],
+  "plugins": ["@typescript-eslint", "react-hooks", "prettier", "cypress", "jest-dom"],
   "parser": "@babel/eslint-parser",
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "env": {
-    "node": true,
     "browser": true,
-    "jest": true
+    "es2021": true,
+    "jest": true,
+    "cypress/globals": true
+  },
+  "parserOptions": {
+    "sourceType": "module"
   },
   "rules": {
     "arrow-parens": ["error", "as-needed"],
-    "semi": "error",
+    "semi": [2, "never"],
     "prefer-destructuring": "error",
     "max-len": [
       "warn",

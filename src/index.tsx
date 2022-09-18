@@ -1,15 +1,13 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
+import * as React from "react";
+import * as ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
+import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
-import { Provider } from "react-redux";
-
 import { ThemeProvider } from "styled-components";
 import theme from "./theme";
 import GlobalStyles from "./globalStyles";
-import { BrowserRouter, HashRouter } from "react-router-dom";
-import { HOME_PAGE_ROUTE } from "./constants/router";
+import { BrowserRouter } from "react-router-dom";
+
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,

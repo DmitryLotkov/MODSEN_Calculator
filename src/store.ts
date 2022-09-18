@@ -1,7 +1,6 @@
-import { combineReducers, legacy_createStore } from "redux";
+import { combineReducers, legacy_createStore } from 'redux'
 
 /*import { TypedUseSelectorHook, useSelector } from "react-redux";*/
-
 
 /*const rootReducer = combineReducers({});
 

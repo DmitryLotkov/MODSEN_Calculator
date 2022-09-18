@@ -1,6 +1,6 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components'
 
-import theme from './theme';
+import theme from './theme'
 
 export default createGlobalStyle`
   * {
@@ -33,4 +33,4 @@ export default createGlobalStyle`
     display: flex;
     background: linear-gradient(to bottom, #c06c84da, #6c5b7bda);
   }
-`;
+`

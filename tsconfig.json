@@ -6,12 +6,18 @@
       "dom.iterable",
       "esnext"
     ],
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "types": [
+      "cypress",
+      "node",
+      "jest",
+      "@testing-library/jest-dom"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
     "moduleResolution": "node",
@@ -21,6 +27,8 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
+    "src",
+    "tsconfig",
+    "./jest-setup.ts"
   ]
 }
