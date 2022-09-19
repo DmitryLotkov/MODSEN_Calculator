@@ -26,18 +26,18 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "node_modules/.bin/react-scripts start",
-    "build": "node_modules/.bin/react-scripts build",
-    "test": "node_modules/.bin/react-scripts test",
-    "eject": "node_modules/.bin/react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "node_modules/.bin/gh-pages -d build",
-    "elint": "node_modules/.bin/eslint --fix --ext .js,.jsx,.ts,.tsx",
-    "eslint:fix": "node_modules/.bin/eslint --fix src --ext .js,.jsx,.ts,.tsx",
-    "cypress": "node_modules/.bin/start-server-and-test start http://localhost:3000 cypress:open",
-    "cypress:open": "node_modules/.bin/cypress open",
-    "cypress:run": "node_modules/.bin/cypress run",
-    "cypress:test": "node_modules/.bin/start-server-and-test start http://localhost:3000 cypress:run"
+    "deploy": "gh-pages -d build",
+    "predeploy": "yarn run build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "elint": "eslint --fix --ext .js,.jsx,.ts,.tsx",
+    "eslint:fix": "eslint --fix src --ext .js,.jsx,.ts,.tsx",
+    "cypress": "start-server-and-test start http://localhost:3000 cypress:open",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "cypress:test": "start-server-and-test start http://localhost:3000 cypress:run"
   },
   "eslintConfig": {
     "extends": [

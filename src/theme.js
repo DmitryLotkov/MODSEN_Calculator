@@ -1,14 +1,16 @@
 import { css } from "styled-components";
 
-const font = "sans-serif";
+export const font = "sans-serif";
 // Color palette
-const black = "#000000";
-const white = "#ffffff";
-const error = "#c86464";
-const primary = "#c06c84";
-const secondary = "#6c5b7b";
-const secondaryLight = "#6a6b7b";
-
+export const black = "#000000";
+export const white = "#ffffff";
+export const error = "#c86464";
+export const primary = "#c06c84";
+export const secondary = "#6c5b7b";
+export const secondaryLight = "#6a6b7b";
+export const headerBGColor = '#434343'
+export const buttonBGColor = '#f2f2f2'
+export const borderColor = '#707070'
 const boxShadows = [
   "box-shadow: 0px 4px 24px -8px rgba(0,0,0,0.75)",
 ];
