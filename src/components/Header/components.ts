@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { headerBGColor, white } from '../../theme'
+import { NavbarProps } from './index'
 
 export const Header = styled.header`
   width: 100%;
@@ -23,19 +24,23 @@ export const AppTitle = styled.div`
   margin-left: 32px;
 `
 
-export const NavbarLink = styled(Link)`
-  color: ${white};
+export const NavbarLink =
+  styled(NavLink) <
+  NavbarProps >
+  `
   text-decoration: none;
-  margin: 10px;
+  color: ${white};
+  margin-left: 32px;
   position: relative;
   font-size: 32px;
   font-weight: 400;
   line-height: 37px;
   letter-spacing: 0;
   text-align: left;
-
-  &:focus {
-    ::after {
+  opacity: ${(props) =>
+    props.isactive === 'true' ? 1 : 0.7};
+  ${(props) =>
+    props.isactive === 'true' ? '' : 1}::after {
       content: '';
       background-color: ${white};
       position: absolute;
@@ -44,5 +49,4 @@ export const NavbarLink = styled(Link)`
       top: 40px;
       left: 0;
     }
-  }
 `

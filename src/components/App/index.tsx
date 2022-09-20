@@ -3,7 +3,7 @@ import Header from '../Header';
 import * as Styled from './components';
 
 import { Navigate, Route, Routes } from "react-router-dom";
-import { ANY_PAGE_ROUTE, ERROR404_PAGE_ROUTE, HOME_PAGE_ROUTE, SETTINGS_PAGE_ROUTE } from '../../constants/router';
+import { ANY_PAGE_ROUTE, ERROR404_PAGE_ROUTE, HOME_PAGE_ROUTE, SETTINGS_PAGE_ROUTE } from '../../constants/router'
 import { ControlPanel } from '../../pages/ControlPanel/ControlPanel'
 import { Calculator } from '../../pages/Calculator'
 
