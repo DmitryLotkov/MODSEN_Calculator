@@ -1,6 +1,9 @@
-import React from 'react'
-import * as Styled from './components'
+import React from "react"
+import * as Styled from "./components"
+import { useAppSelector } from "../../../BLL/store"
+
 
 export const Display = () => {
-  return <Styled.Display>Display</Styled.Display>
+  const screenValue = useAppSelector<string>(state => state.keyPadPage.screenValue)
+  return <Styled.Display>{screenValue}</Styled.Display>
 }

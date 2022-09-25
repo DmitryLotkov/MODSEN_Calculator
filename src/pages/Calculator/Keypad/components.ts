@@ -8,15 +8,13 @@ import {
 export const Keypad = styled.div`
   width: 100%;
   height: 798.5px;
-  /*border: 1px solid green;*/
-  display: flex;
+  border: 1px solid green;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   box-sizing: border-box;
+  padding-left: 132px;
 `
 export const Button = styled.button`
-  grid-area: i;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   box-sizing: border-box;
   border-radius: 32px;
   opacity: 1;
@@ -27,7 +25,6 @@ export const Button = styled.button`
   font-size: 64px;
   font-weight: 400;
   line-height: 74px;
-  text-align: left;
   cursor: pointer;
   color: ${black};
 `

@@ -7,6 +7,8 @@ import { ThemeProvider } from "styled-components";
 import theme from "./theme";
 import GlobalStyles from "./globalStyles";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux"
+import store from "./BLL/store"
 
 
 const root = ReactDOM.createRoot(
@@ -14,14 +16,14 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    {/*<Provider store={store}>*/}
+    <Provider store={store}>
     <BrowserRouter basename={'/MODSEN_Calculator'}>
       <ThemeProvider theme={theme}>
         <App />
         <GlobalStyles />
       </ThemeProvider>
     </BrowserRouter>
-    {/*</Provider>*/}
+    </Provider>
   </React.StrictMode>,
 );
 

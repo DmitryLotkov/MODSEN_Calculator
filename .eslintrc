@@ -1,7 +1,9 @@
 {
-  "extends": ["eslint:recommended", "standard-react", "plugin:prettier/recommended", "plugin:react/recommended"],
-  "plugins": ["@typescript-eslint", "react-hooks", "prettier", "cypress", "jest-dom"],
-  "parser": "@babel/eslint-parser",
+  "extends": ["eslint:recommended", "standard-react", "plugin:prettier/recommended", "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"],
+  "plugins": ["@typescript-eslint", "react-hooks", "prettier", "cypress", "jest-dom", "react", "typescript-enum"],
+  "parser": "@typescript-eslint/parser",
   "settings": {
     "react": {
       "version": "detect"
@@ -14,6 +16,10 @@
     "cypress/globals": true
   },
   "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
     "sourceType": "module"
   },
   "rules": {
@@ -27,7 +33,8 @@
         "ignorePattern": "import"
       }
     ],
-    "no-unused-vars": "warn",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "off",
     "operator-linebreak": "warn",
     "react-hooks/rules-of-hooks": "error",
     "react/jsx-closing-tag-location": 2,

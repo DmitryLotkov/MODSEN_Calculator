@@ -18,7 +18,6 @@ export default () => {
   const onClickHandler = () => setIsActive(!isActive)
   const location = useLocation()
 
-
   return (
     <Styled.Header>
       <Styled.AppTitle>Calculator App</Styled.AppTitle>

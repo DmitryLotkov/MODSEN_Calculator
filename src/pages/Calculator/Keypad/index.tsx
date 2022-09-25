@@ -1,17 +1,27 @@
-import React from 'react'
-import * as Styled from './components'
-import { buttonData, leftColumnOperationButtonData, rightColumnOperationButtonData } from '../../../constants/ButtonData'
-import { Button } from './components'
+import React from "react"
+import * as Styled from "./components"
+import {
+  ButtonOperationType,
+  buttons, OperatorValueType,
+} from "../../../constants/buttonData"
 
-const leftColumn = leftColumnOperationButtonData.map(item => <Button key={item.id}>{item.title}</Button>)
-const middleColumn = buttonData.map(item => <Button key={item.id}>{item.title}</Button>)
+import { Button } from "./Button/Button"
 
-const rightColumn = rightColumnOperationButtonData.map(item => <Button key={item.id}>{item.title.replace("/", "\\")}</Button>)
 
-export const Keypad = () => {
-  return <Styled.Keypad>
-    <Styled.SideContainer>{leftColumn}</Styled.SideContainer>
-    <Styled.MiddleContainer>{middleColumn}</Styled.MiddleContainer>
-    <Styled.SideContainer>{rightColumn}</Styled.SideContainer>
-  </Styled.Keypad>
+type KeyPadPropsType = {
+  actionToPerform : (value:OperatorValueType, keyType:ButtonOperationType) => void
+  allClear: boolean
+}
+export const Keypad = ({actionToPerform}:KeyPadPropsType) => {
+
+  const handleClickButton = (value:OperatorValueType, keyType:ButtonOperationType) => {
+    actionToPerform(value, keyType);
+  }
+  return (
+    <Styled.Keypad>
+      {
+        buttons.map((btn, i) => <Button value={btn.value} label={btn.label} type={btn.type} key={i} onClick={handleClickButton}
+           />)}
+    </Styled.Keypad>
+  )
 }
