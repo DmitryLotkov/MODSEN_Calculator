@@ -1,6 +1,6 @@
 // types
 
-import { OperatorType } from "../constants/buttonData"
+import { OperatorType } from "../constants/types"
 
 // eslint-disable-next-line prettier/prettier
 export enum ACTIONS_TYPE {

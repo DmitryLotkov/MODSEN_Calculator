@@ -6,8 +6,9 @@ import {
 } from '../../../theme'
 
 export const Keypad = styled.div`
+  padding-top: 40px;
   width: 100%;
-  height: 798.5px;
+  height: 701px;
   border: 1px solid green;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -20,8 +21,8 @@ export const Button = styled.button`
   opacity: 1;
   background: ${buttonBGColor} no-repeat 0% 0%;
   border: 1px solid ${borderColor};
-  width: 150px;
-  height: 150px;
+  width: 130px;
+  height: 130px;
   font-size: 64px;
   font-weight: 400;
   line-height: 74px;

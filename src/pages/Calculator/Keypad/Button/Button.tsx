@@ -3,7 +3,7 @@ import * as Styled from '../components'
 import {
   ButtonOperationType,
   OperatorValueType,
-} from '../../../../constants/buttonData'
+} from '../../../../constants/types'
 
 type ButtonPropsType = {
   value: OperatorValueType,

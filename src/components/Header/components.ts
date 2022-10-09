@@ -6,7 +6,7 @@ import { NavbarProps } from './index'
 
 export const Header = styled.header`
   width: 100%;
-  height: 120px;
+  height: 80px;
   background-color: ${headerBGColor};
   display: flex;
   align-items: center;
