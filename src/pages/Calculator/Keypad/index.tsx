@@ -1,26 +1,19 @@
 import React from "react"
 import * as Styled from "./components"
 import {
-  ButtonOperationType, ButtonsType, OperatorValueType,
-} from "../../../constants/types"
+  ButtonOperationType, ButtonsType, KeyPadPropsType, OperatorValueType,
+} from "../../../types/types"
 
 import { Button } from "./Button/Button"
 
-
-type KeyPadPropsType = {
-  actionToPerform : (value:OperatorValueType, keyType:ButtonOperationType) => void
-  allClear: boolean
-  isExpectsOperand:boolean
-}
-
-export const Keypad = ({actionToPerform, allClear, isExpectsOperand}:KeyPadPropsType) => {
+export const Keypad = ({actionToPerform, allClear, screenValue}:KeyPadPropsType) => {
   const buttons:ButtonsType = [
     { label: '%', value: '%', type: 'operator' },
     { label: '7', value: 7, type: 'numeric' },
     { label: '8', value: 8, type: 'numeric' },
     { label: '9', value: 9, type: 'numeric' },
     { label: '*', value: '*', type: 'operator' },
-    { label: '-', value: '-', type:  isExpectsOperand  ? 'operator' : 'fx'},
+    { label: '-', value: '-', type:  screenValue === "0"  ? 'numeric': 'operator'},
     { label: '4', value: 4, type: 'numeric' },
     { label: '5', value: 5, type: 'numeric' },
     { label: '6', value: 6, type: 'numeric' },
@@ -40,6 +33,23 @@ export const Keypad = ({actionToPerform, allClear, isExpectsOperand}:KeyPadProps
       type: 'fx',
     },
   ]
+  // check brackets are balanced or not
+  const checkBracketBalanced = (expr:string) => {
+    let stack = [];
+    for (let i = 0; i < expr.length; i++) {
+      let x = expr[i];
+      if (x === "(") {
+        stack.push(x);
+        continue;
+      }
+
+      if (x === ")") {
+        if (stack.length === 0) return false;
+        else stack.pop();
+      }
+    }
+    return stack.length === 0;
+  };
   const handleClickButton = (value:OperatorValueType, keyType:ButtonOperationType) => {
     actionToPerform(value, keyType);
   }

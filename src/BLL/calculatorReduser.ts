@@ -1,6 +1,6 @@
 // types
 
-import { OperatorType } from "../constants/types"
+import { OperatorType } from "../types/types"
 
 // eslint-disable-next-line prettier/prettier
 export enum ACTIONS_TYPE {
@@ -11,7 +11,6 @@ export enum ACTIONS_TYPE {
 }
 export type InitialStateType = {
   screenValue: string
-  // eslint-disable-next-line prettier/prettier
   isExpectsOperand: boolean
   accValue: null | number
   currentOperator: null | OperatorType

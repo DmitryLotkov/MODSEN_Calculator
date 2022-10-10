@@ -4,7 +4,7 @@ import { Keypad } from "./Keypad"
 import { History } from "./History"
 import * as Styled from "./components"
 import { useAppSelector } from "../../BLL/store"
-import { AdditionalOperatorType, ButtonOperationType, NumericValueType, OperatorType, OperatorValueType } from "../../constants/types"
+import { AdditionalOperatorType, ButtonOperationType, NumericValueType, OperatorType, OperatorValueType } from "../../types/types"
 import { useDispatch } from "react-redux"
 import { setAccValueAC, setCurrentOperatorAC, setIsExpectsOperandAC, setScreenValueAC } from "../../BLL/calculatorReduser"
 
@@ -15,8 +15,8 @@ export const Calculator = () => {
   const isExpectsOperand = useAppSelector<boolean>(state => state.keyPadPage.isExpectsOperand)
   const accValue = useAppSelector<null | number>(state => state.keyPadPage.accValue)
   const currentOperator = useAppSelector<null | OperatorType>(state => state.keyPadPage.currentOperator)
-  const isScreenClear = screenValue === "0";
-  useEffect(()=>{
+  const isScreenClear = screenValue === "0"
+  useEffect(() => {
     console.log(screenValue)
   }, [screenValue])
   const clearScreen = () => {
@@ -24,6 +24,7 @@ export const Calculator = () => {
   }
 
   const reverseSign = () => {
+    debugger
     dispatch(
       setScreenValueAC(
         String(-parseFloat(screenValue),
@@ -54,9 +55,9 @@ export const Calculator = () => {
       case "C":
         clearScreen()
         break
-      case "-":
+     /* case "-":
         reverseSign()
-        break
+        break*/
       case ".":
         addDecimalPoint()
         break
@@ -121,7 +122,10 @@ export const Calculator = () => {
     <Styled.Main>
       <Styled.Section>
         <Display />
-        <Keypad actionToPerform={handleActionToPerform} allClear={isScreenClear} isExpectsOperand = {isExpectsOperand}/>
+        <Keypad actionToPerform={handleActionToPerform}
+                allClear={isScreenClear}
+                isExpectsOperand={isExpectsOperand}
+                screenValue={screenValue} />
       </Styled.Section>
       <History />
     </Styled.Main>
