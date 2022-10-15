@@ -1,59 +1,58 @@
 // types
-
-import { OperatorType } from "../types/types"
+import { ButtonOperationType, OperatorType } from "../types"
 
 // eslint-disable-next-line prettier/prettier
 export enum ACTIONS_TYPE {
-  SET_SCREEN_VALUE= "CALCULATOR/SET_SCREEN_VALUE",
-  SET_IS_EXPECTS_OPERAND= "CALCULATOR/SET_IS_EXPECTS_OPERAND",
-  SET_ACCUMULATE_VALUE= "CALCULATOR/SET_ACCUMULATE_VALUE",
-  SET_CURRENT_OPERATOR= "CALCULATOR/SET_CURRENT_OPERATOR",
+  SET_SCREEN_VALUE = "CALCULATOR/SET_SCREEN_VALUE",
+  SET_IS_EXPECTS_OPERAND = "CALCULATOR/SET_IS_EXPECTS_OPERAND",
+  SET_IS_OPERATION_FINISHED = "CALCULATOR/SET_IS_OPERATION_FINISHED",
+  SET_ACCUMULATE_VALUE = "CALCULATOR/SET_ACCUMULATE_VALUE",
+  SET_CURRENT_OPERATOR = "CALCULATOR/SET_CURRENT_OPERATOR",
 }
+
 export type InitialStateType = {
   screenValue: string
   isExpectsOperand: boolean
   accValue: null | number
   currentOperator: null | OperatorType
+  isOperationFinished: boolean
+  lastButtonType: ButtonOperationType
 }
 
 const initialState: InitialStateType = {
   screenValue: "0",
   isExpectsOperand: false,
-  accValue: null ,
+  accValue: null,
   currentOperator: null,
+  isOperationFinished: false,
+  lastButtonType: "operator",
 }
 
-
 export type ActionsType = ReturnType<typeof setScreenValueAC>
-  | ReturnType<typeof setIsExpectsOperandAC>
-  | ReturnType<typeof setCurrentOperatorAC>
-  | ReturnType<typeof setAccValueAC>
+  | ReturnType<typeof setIsOperationFinishedAC>
+
 
 //Action creators
-export const setScreenValueAC = (screenValue: string) => ({ type: ACTIONS_TYPE.SET_SCREEN_VALUE, screenValue } as const)
-export const setIsExpectsOperandAC = (isExpectsOperand: boolean) => ({ type: ACTIONS_TYPE.SET_IS_EXPECTS_OPERAND, isExpectsOperand } as const)
-export const setAccValueAC = (accValue: null | number) => ({ type: ACTIONS_TYPE.SET_ACCUMULATE_VALUE, accValue } as const)
-export const setCurrentOperatorAC = (currentOperator: null| OperatorType) => ({ type: ACTIONS_TYPE.SET_CURRENT_OPERATOR, currentOperator } as const)
+export const setScreenValueAC = (screenValue: string, lastButtonType: ButtonOperationType) => {
+  console.log(lastButtonType)
+  return ({ type: ACTIONS_TYPE.SET_SCREEN_VALUE, screenValue, lastButtonType } as const)
+}
+
+export const setIsOperationFinishedAC = (isOperationFinished: boolean) =>
+  ({ type: ACTIONS_TYPE.SET_IS_OPERATION_FINISHED, isOperationFinished } as const)
 
 export const calculatorReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
   switch (action.type) {
     case ACTIONS_TYPE.SET_SCREEN_VALUE:
-      return { ...state, screenValue: action.screenValue}
-    case ACTIONS_TYPE.SET_IS_EXPECTS_OPERAND:
-      return {...state, isExpectsOperand: action.isExpectsOperand}
-    case ACTIONS_TYPE.SET_CURRENT_OPERATOR:
-      return {...state, currentOperator: action.currentOperator}
-    case ACTIONS_TYPE.SET_ACCUMULATE_VALUE:
-      return {...state, accValue: action.accValue}
+      return {
+        ...state,
+        screenValue: action.screenValue, lastButtonType: action.lastButtonType,
+      }
+    case ACTIONS_TYPE.SET_IS_OPERATION_FINISHED:
+      return { ...state, isOperationFinished: action.isOperationFinished }
     default:
       return { ...state }
   }
 }
-
-
-
-
-
-
 
 

@@ -1,10 +1,9 @@
-export type ButtonOperationType = 'fx'| 'numeric' | 'operator'
+export type ButtonOperationType = 'fx'| 'numeric' | 'operator' | "result"
 
 export type KeyPadPropsType = {
   actionToPerform : (value:OperatorValueType, keyType:ButtonOperationType) => void
   // eslint-disable-next-line prettier/prettier
   allClear: boolean
-  isExpectsOperand:boolean
   screenValue:string
 }
 export type OperatorType = "+" | "-" | "*"| "/" | "=" | '%'

@@ -1,9 +1,10 @@
-import React from 'react'
-import * as Styled from '../components'
+import React, { useEffect, useState } from 'react'
+import * as Styled from '../Keypad/components'
 import {
   ButtonOperationType,
   OperatorValueType,
-} from '../../../../types/types'
+} from '../../types'
+import { useAppSelector } from '../../BLL/store'
 
 type ButtonPropsType = {
   value: OperatorValueType,
@@ -21,11 +22,21 @@ export const Button = ({
   label,
   onClick,
 }: ButtonPropsType) => {
+  const lastOperatorType =
+    useAppSelector <
+    ButtonOperationType >
+    ((state) => state.keyPadPage.lastButtonType)
+
   const handleButtonClick = () => {
     onClick(value, type)
   }
   return (
-    <Styled.Button onClick={handleButtonClick}>
+    <Styled.Button
+      onClick={handleButtonClick}
+      disabled={
+        lastOperatorType === 'operator' &&
+        type === 'operator'
+      }>
       {label}
     </Styled.Button>
   )
