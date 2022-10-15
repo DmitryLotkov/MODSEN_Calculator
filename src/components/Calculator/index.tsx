@@ -4,7 +4,7 @@ import * as Styled from "./components"
 import { useAppSelector } from "../../BLL/store"
 import { AdditionalOperatorType, ButtonOperationType, NumericValueType, OperatorValueType } from "../../types"
 import { useDispatch } from "react-redux"
-import { setIsOperationFinishedAC, setScreenValueAC } from "../../BLL/calculatorReduser"
+import { setHistoryAC, setIsOperationFinishedAC, setScreenValueAC } from "../../BLL/calculatorReduser"
 import { Display } from "../Display"
 import { Keypad } from "../Keypad"
 import { History } from "../History"
@@ -47,7 +47,7 @@ export const Calculator = () => {
     }
   }
 
-  const handleClickNumericKey = (inputValue: OperatorValueType, keyType: ButtonOperationType) => {
+  const handleClickNumericOperatorKey = (inputValue: OperatorValueType, keyType: ButtonOperationType) => {
 
     if (isOperationFinished) {
       dispatch(setScreenValueAC(String(inputValue), keyType))
@@ -68,10 +68,12 @@ export const Calculator = () => {
         return
       }
       if (isParenthesisBalanced(screenValue) && !expressions.test(lastNumber)) {
+        dispatch(setHistoryAC(screenValue))
         dispatch(setScreenValueAC(roundUpNumber(eval(screenValue)), "operator"))
       } else {
         dispatch(setScreenValueAC(screenValue.replace(/[()]/g, ""), "numeric"))
         dispatch(setScreenValueAC(roundUpNumber(eval(screenValue.replace(/[()]/g, ""))), "numeric"))
+        dispatch(setHistoryAC(screenValue.replace(/[()]/g, "")))
       }
 
     } catch (e: any) {
@@ -85,10 +87,10 @@ export const Calculator = () => {
         handleClickFunctionKey(value)
         break
       case "numeric":
-        handleClickNumericKey(value as NumericValueType | AdditionalOperatorType, "numeric")
+        handleClickNumericOperatorKey(value as NumericValueType | AdditionalOperatorType, keyType)
         break
       case "operator":
-        handleClickNumericKey(value as NumericValueType | AdditionalOperatorType, "operator")
+        handleClickNumericOperatorKey(value as NumericValueType | AdditionalOperatorType, keyType)
         break
       case "result":
         handleClickResultKey()
