@@ -1,6 +1,6 @@
 import React from "react"
-import * as Styled from "./components"
-import { useAppSelector } from "../../BLL/store"
+import * as Styled from "../components"
+import { useAppSelector } from "../../../BLL/store"
 
 export const History = () => {
   const history = useAppSelector<Array<string>>(state => state.keyPadPage.history)

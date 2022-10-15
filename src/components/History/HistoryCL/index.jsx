@@ -1,11 +1,6 @@
-import { Component } from 'react'
+import React, { Component } from 'react'
 
-import {
-  Title,
-  HistoryTab,
-  HistoryList,
-  HistoryItem,
-} from '../components'
+import * as Styled from '../components'
 
 export class History extends Component {
   constructor(props) {
@@ -16,19 +11,14 @@ export class History extends Component {
     const { history, deleteAllHistory } = this.props
 
     return (
-      /*<HistoryTab>
-        <Title>History</Title>
-        <Button deleteAllHistory={deleteAllHistory} />
-        {history.map(({ expression, index }) => {
-          return (
-            <HistoryList key={index}>
-              <HistoryItem>{expression}</HistoryItem>
-            </HistoryList>
-          )
-        })}
-      </HistoryTab>*/
-      // eslint-disable-next-line react/react-in-jsx-scope
-      <div>History</div>
+      <Styled.History>
+        <Styled.Title>History</Styled.Title>
+        {history.map((item, index) => (
+          <Styled.HistoryItem key={index}>
+            {item}
+          </Styled.HistoryItem>
+        ))}
+      </Styled.History>
     )
   }
 }

@@ -9,6 +9,7 @@ export const History = styled.section`
   flex-direction: column;
   overflow-y: auto;
 `
+
 export const Title = styled.h2`
   font-style: normal;
   font-weight: 400;

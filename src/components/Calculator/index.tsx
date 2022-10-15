@@ -7,9 +7,10 @@ import { useDispatch } from "react-redux"
 import { setHistoryAC, setIsOperationFinishedAC, setScreenValueAC } from "../../BLL/calculatorReduser"
 import { Display } from "../Display"
 import { Keypad } from "../Keypad"
-import { History } from "../History"
+import { History } from "../History/HistoryFC"
 import { isParenthesisBalanced } from "../../helpers/isParenthesisBalanced"
 import { roundUpNumber } from "../../helpers/roundUpNumber"
+import { operatorRegExp } from "../../constants/operatorRegExp"
 
 
 export const Calculator = () => {
@@ -19,17 +20,22 @@ export const Calculator = () => {
   const isScreenClear = screenValue === "0"
 
   const clearScreen = () => {
-    dispatch(setScreenValueAC("0", "operator"))
+    dispatch(setScreenValueAC("0", "fx"))
   }
 
   const addDecimalPoint = () => {
-    dispatch(setScreenValueAC("0.", "operator"))
-    if (!screenValue.includes("."))
-      dispatch(setScreenValueAC(screenValue + ".", "operator"))
+    dispatch(setIsOperationFinishedAC(false))
+    if (!screenValue.split("").includes(".")){
+      dispatch(setScreenValueAC(screenValue + ".", "fx"))
+    }
+    else{
+      dispatch(setScreenValueAC("0.", "numeric"))
+
+    }
   }
 
   const allClear = () => {
-    dispatch(setScreenValueAC("0", "operator"))
+    dispatch(setScreenValueAC("0", "fx"))
     dispatch(setIsOperationFinishedAC(false))
   }
 
@@ -59,15 +65,13 @@ export const Calculator = () => {
   }
 
   const handleClickResultKey = () => {
-    const expressions = /\+|-|\/|\*|%|=|[A-z]| /
     const lastNumber = screenValue[screenValue.length - 1]
-
     dispatch(setIsOperationFinishedAC(true))
     try {
-      if (expressions.test(lastNumber)) {
+      if (operatorRegExp.test(lastNumber)) {
         return
       }
-      if (isParenthesisBalanced(screenValue) && !expressions.test(lastNumber)) {
+      if (isParenthesisBalanced(screenValue) && !operatorRegExp.test(lastNumber)) {
         dispatch(setHistoryAC(screenValue))
         dispatch(setScreenValueAC(roundUpNumber(eval(screenValue)), "operator"))
       } else {
