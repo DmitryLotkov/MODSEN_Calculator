@@ -10,7 +10,8 @@ import { Keypad } from "../Keypad"
 import { History } from "../History/HistoryFC"
 import { isParenthesisBalanced } from "../../helpers/isParenthesisBalanced"
 import { roundUpNumber } from "../../helpers/roundUpNumber"
-import { operatorRegExp } from "../../constants/operatorRegExp"
+import { numbersRegExp, operatorRegExp, parenthesisRegExp } from "../../constants/regExp"
+
 
 
 export const Calculator = () => {
@@ -29,7 +30,7 @@ export const Calculator = () => {
       dispatch(setScreenValueAC(screenValue + ".", "fx"))
     }
     else{
-      dispatch(setScreenValueAC("0.", "numeric"))
+      dispatch(setScreenValueAC("0.", "fx"))
 
     }
   }
@@ -65,19 +66,33 @@ export const Calculator = () => {
   }
 
   const handleClickResultKey = () => {
-    const lastNumber = screenValue[screenValue.length - 1]
+    const lastValue = screenValue[screenValue.length - 1]
+    const firstValue = screenValue[0]
+    const secondValue = screenValue[1]
     dispatch(setIsOperationFinishedAC(true))
     try {
-      if (operatorRegExp.test(lastNumber)) {
+      if(operatorRegExp.test(firstValue) && (firstValue !== "-" && firstValue !== "+") || operatorRegExp.test(lastValue)){
+        dispatch(setIsOperationFinishedAC(false))
+        dispatch(setScreenValueAC(screenValue.replace(operatorRegExp, ""), "numeric"))
         return
       }
-      if (isParenthesisBalanced(screenValue) && !operatorRegExp.test(lastNumber)) {
+      if(!numbersRegExp.test(screenValue)){
+        dispatch(setIsOperationFinishedAC(false))
+        dispatch(setScreenValueAC(screenValue.replace(parenthesisRegExp, ""), "numeric"))
+        dispatch(setScreenValueAC("0", "numeric"))
+        return
+      }
+      if(firstValue === "-" && secondValue === "-" ){
+        return //добавить предохранитель
+      }
+      if (isParenthesisBalanced(screenValue)) {
         dispatch(setHistoryAC(screenValue))
         dispatch(setScreenValueAC(roundUpNumber(eval(screenValue)), "operator"))
       } else {
-        dispatch(setScreenValueAC(screenValue.replace(/[()]/g, ""), "numeric"))
-        dispatch(setScreenValueAC(roundUpNumber(eval(screenValue.replace(/[()]/g, ""))), "numeric"))
-        dispatch(setHistoryAC(screenValue.replace(/[()]/g, "")))
+        dispatch(setIsOperationFinishedAC(false))
+        dispatch(setScreenValueAC(screenValue.replace(parenthesisRegExp, ""), "operator"))
+        dispatch(setScreenValueAC(roundUpNumber(eval(screenValue.replace(parenthesisRegExp, ""))), "numeric"))
+        dispatch(setHistoryAC(screenValue.replace(parenthesisRegExp, "")))
       }
 
     } catch (e: any) {

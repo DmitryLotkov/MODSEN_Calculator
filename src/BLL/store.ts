@@ -17,3 +17,7 @@ export const useAppSelector: TypedUseSelectorHook<AppStoreType> =
   useSelector
 
 export default store
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+window.store = store
