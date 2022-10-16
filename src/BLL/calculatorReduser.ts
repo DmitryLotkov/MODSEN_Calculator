@@ -7,6 +7,7 @@ export enum ACTIONS_TYPE {
   SET_SCREEN_VALUE = "CALCULATOR/SET_SCREEN_VALUE",
   SET_IS_OPERATION_FINISHED = "CALCULATOR/SET_IS_OPERATION_FINISHED",
   SET_HISTORY = "CALCULATOR/SET_HISTORY",
+  CLEAR_HISTORY = "CALCULATOR/CLEAR_HISTORY",
 }
 
 export type InitialStateType = {
@@ -26,6 +27,7 @@ const initialState: InitialStateType = {
 export type ActionsType = ReturnType<typeof setScreenValueAC>
   | ReturnType<typeof setIsOperationFinishedAC>
   | ReturnType<typeof setHistoryAC>
+  | ReturnType<typeof clearHistoryAC>
 
 
 //Action creators
@@ -37,6 +39,8 @@ export const setIsOperationFinishedAC = (isOperationFinished: boolean) =>
 
 export const setHistoryAC = (expression:string) =>
   ({ type: ACTIONS_TYPE.SET_HISTORY, expression} as const)
+export const clearHistoryAC = () =>
+  ({ type: ACTIONS_TYPE.CLEAR_HISTORY} as const)
 
 export const calculatorReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
   switch (action.type) {
@@ -49,6 +53,8 @@ export const calculatorReducer = (state: InitialStateType = initialState, action
         return {...state, history: state.history.concat(action.expression).filter((item, index, arr) => index >= arr.length-maxHistoryItemsCount)}
     case ACTIONS_TYPE.SET_IS_OPERATION_FINISHED:
       return { ...state, isOperationFinished: action.isOperationFinished }
+    case ACTIONS_TYPE.CLEAR_HISTORY:
+      return {...state, history:[]}
     default:
       return { ...state }
   }
