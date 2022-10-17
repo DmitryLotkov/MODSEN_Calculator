@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { NavLink } from 'react-router-dom'
-import { headerBGColor, white } from '../../theme'
+import { headerBGColor, white } from '../../styles'
 import { NavbarProps } from './index'
 
 export const Header = styled.header`
@@ -10,6 +10,7 @@ export const Header = styled.header`
   background-color: ${headerBGColor};
   display: flex;
   align-items: center;
+  background: ${({ theme }) => theme.colors.header};
   justify-content: space-between;
 `
 

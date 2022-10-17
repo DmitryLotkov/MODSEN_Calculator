@@ -3,8 +3,7 @@ import * as ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
-import { ThemeProvider } from "styled-components";
-import theme from "./theme";
+
 import GlobalStyles from "./globalStyles";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux"
@@ -18,10 +17,8 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
     <BrowserRouter basename={'/MODSEN_Calculator'}>
-      <ThemeProvider theme={theme}>
         <App />
         <GlobalStyles />
-      </ThemeProvider>
     </BrowserRouter>
     </Provider>
   </React.StrictMode>,

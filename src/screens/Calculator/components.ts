@@ -7,4 +7,6 @@ export const Section = styled.section`
 export const Main = styled.main`
   display: flex;
   border: 1px solid red;
+  background: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.text};
 `

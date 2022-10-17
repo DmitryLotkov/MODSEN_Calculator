@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { white } from './theme'
+import { white } from './styles'
 
 export const App = styled.div`
   width: 1920px;

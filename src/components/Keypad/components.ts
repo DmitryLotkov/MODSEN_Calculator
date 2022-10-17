@@ -3,7 +3,7 @@ import {
   black,
   borderColor,
   buttonBGColor,
-} from '../../theme'
+} from '../../styles'
 
 export const Keypad = styled.div`
   padding-top: 40px;

@@ -128,7 +128,7 @@
 > ![structure_2](https://github.com/slava-ovchinnikov/education-task-calculator/blob/master/doc/structure_2.png?raw=true)
 
 #### Пояснение для структуры файлов компонента:
-- ***index.js*** - корневой файл для экспорта компонентов.
+- ***index.ts*** - корневой файл для экспорта компонентов.
 - ***\*.jsx*** - компоненты модуля (может быть несколько).
 - ***conponents.js*** - стилизованные компоненты с использование ***stylde-components***.
 

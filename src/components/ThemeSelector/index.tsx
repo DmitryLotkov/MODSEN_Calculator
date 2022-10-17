@@ -1,23 +1,21 @@
-import { OptionChange, SelectList } from './styled'
-import { ThemeContext } from '../../utils'
+import * as Styled from "./component"
+import { ControlPanelPropsType } from "../../types"
 
-export const ThemeSelectorFC = () => {
+
+export const ThemeSelectorFC = ({ switchTheme, appTheme }: ControlPanelPropsType) => {
+
   return (
-    <>
-      <ThemeContext.Consumer>
-        {({ theme, toggleTheme }) => (
-          <SelectList
-            onChange={toggleTheme.bind(this)}
-            defaultValue={theme}>
-            <OptionChange value="light">
-              Light Theme
-            </OptionChange>
-            <OptionChange value="dark">
-              Dark Theme
-            </OptionChange>
-          </SelectList>
-        )}
-      </ThemeContext.Consumer>
-    </>
+    <Styled.SelectList
+      onChange={switchTheme}
+      value={appTheme}>
+      <Styled.OptionChange value="light">
+        Light Theme
+      </Styled.OptionChange><Styled.OptionChange value="colored">
+        Colored Theme
+      </Styled.OptionChange>
+      <Styled.OptionChange value="dark">
+        Dark Theme
+      </Styled.OptionChange>
+    </Styled.SelectList>
   )
 }
