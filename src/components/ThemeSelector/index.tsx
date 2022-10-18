@@ -1,12 +1,15 @@
 import * as Styled from "./component"
-import { ControlPanelPropsType } from "../../types"
+import { ControlPanelPropsType, ThemeType } from "../../types"
+import { ChangeEvent } from "react"
 
 
 export const ThemeSelectorFC = ({ switchTheme, appTheme }: ControlPanelPropsType) => {
-
+  const onChangeHandler = (e:ChangeEvent<HTMLSelectElement>) =>{
+    switchTheme(e.currentTarget.value as ThemeType)
+  }
   return (
     <Styled.SelectList
-      onChange={switchTheme}
+      onChange={onChangeHandler}
       value={appTheme}>
       <Styled.OptionChange value="light">
         Light Theme

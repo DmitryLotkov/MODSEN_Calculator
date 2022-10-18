@@ -9,12 +9,12 @@ export const Keypad = styled.div`
   padding-top: 40px;
   width: 100%;
   height: 701px;
-  border: 1px solid green;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   box-sizing: border-box;
   padding-left: 132px;
 `
+
 export const Button = styled.button`
   box-sizing: border-box;
   border-radius: 32px;
@@ -31,7 +31,7 @@ export const Button = styled.button`
 `
 
 export const MiddleContainer = styled.div`
-  width: 757px;
+  /*width: 757px;*/
   display: flex;
   /*border: 1px solid black;*/
   flex-wrap: wrap;

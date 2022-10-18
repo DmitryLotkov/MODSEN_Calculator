@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 
 import * as Styled from "./components"
 import { useAppSelector } from "../../BLL/store"
@@ -11,7 +11,7 @@ import { History } from "../../components/History/HistoryFC"
 import { isParenthesisBalanced } from "../../helpers/isParenthesisBalanced"
 import { roundUpNumber } from "../../helpers/roundUpNumber"
 import { numbersRegExp, operatorRegExp, parenthesisRegExp } from "../../constants/regExp"
-
+import ErrorBoundary from "../../components/ErrorBoundary"
 
 
 export const Calculator = () => {
@@ -20,16 +20,21 @@ export const Calculator = () => {
   const isOperationFinished = useAppSelector<boolean>(state => state.keyPadPage.isOperationFinished)
   const isScreenClear = screenValue === "0"
 
+  const [isHistoryOpen, setIsHistoryOpen] = useState<boolean>(false)
+
+  const handleOpenHistory = ()=> {
+    console.log("clicked")
+    setIsHistoryOpen(!isHistoryOpen)
+  }
   const clearScreen = () => {
     dispatch(setScreenValueAC("0", "fx"))
   }
 
   const addDecimalPoint = () => {
     dispatch(setIsOperationFinishedAC(false))
-    if (!screenValue.split("").includes(".")){
+    if (!screenValue.split("").includes(".")) {
       dispatch(setScreenValueAC(screenValue + ".", "fx"))
-    }
-    else{
+    } else {
       dispatch(setScreenValueAC("0.", "fx"))
 
     }
@@ -61,7 +66,7 @@ export const Calculator = () => {
       dispatch(setIsOperationFinishedAC(false))
     } else {
       dispatch(setScreenValueAC(
-        screenValue === "0" ? String(inputValue) : screenValue + inputValue,keyType))
+        screenValue === "0" ? String(inputValue) : screenValue + inputValue, keyType))
     }
   }
 
@@ -71,21 +76,23 @@ export const Calculator = () => {
     const secondValue = screenValue[1]
     dispatch(setIsOperationFinishedAC(true))
     try {
-      if(operatorRegExp.test(firstValue) && (firstValue !== "-" && firstValue !== "+") || operatorRegExp.test(lastValue)){
+      if (operatorRegExp.test(firstValue) && (firstValue !== "-" && firstValue !== "+") || operatorRegExp.test(lastValue)) {
         dispatch(setIsOperationFinishedAC(false))
         dispatch(setScreenValueAC(screenValue.replace(operatorRegExp, ""), "numeric"))
         return
       }
-      if(!numbersRegExp.test(screenValue)){
+      if (!numbersRegExp.test(screenValue)) {
+
         dispatch(setIsOperationFinishedAC(false))
         dispatch(setScreenValueAC(screenValue.replace(parenthesisRegExp, ""), "numeric"))
         dispatch(setScreenValueAC("0", "numeric"))
         return
       }
-      if(firstValue === "-" && secondValue === "-" ){
+      if (firstValue === "-" && secondValue === "-") {
         return //добавить предохранитель
       }
       if (isParenthesisBalanced(screenValue)) {
+
         dispatch(setHistoryAC(screenValue))
         dispatch(setScreenValueAC(roundUpNumber(eval(screenValue)), "operator"))
       } else {
@@ -93,6 +100,7 @@ export const Calculator = () => {
         dispatch(setScreenValueAC(screenValue.replace(parenthesisRegExp, ""), "operator"))
         dispatch(setScreenValueAC(roundUpNumber(eval(screenValue.replace(parenthesisRegExp, ""))), "numeric"))
         dispatch(setHistoryAC(screenValue.replace(parenthesisRegExp, "")))
+        dispatch(setIsOperationFinishedAC(true))
       }
 
     } catch (e: any) {
@@ -116,15 +124,19 @@ export const Calculator = () => {
         break
     }
   }
+
   return (
-    <Styled.Main>
-      <Styled.Section>
-        <Display />
-        <Keypad actionToPerform={handleActionToPerform}
-                allClear={isScreenClear}
-                screenValue={screenValue} />
-      </Styled.Section>
-      <History />
-    </Styled.Main>
+    <ErrorBoundary>
+      <Styled.Main>
+        <Styled.Section>
+          <Display />
+          <Styled.HistoryButton onClick={ handleOpenHistory}>{isHistoryOpen ? '▷' : '◁'}</Styled.HistoryButton>
+          <Keypad actionToPerform={handleActionToPerform}
+                  allClear={isScreenClear}
+                  screenValue={screenValue} />
+        </Styled.Section>
+        {isHistoryOpen && <History />}
+      </Styled.Main>
+    </ErrorBoundary>
   )
 }

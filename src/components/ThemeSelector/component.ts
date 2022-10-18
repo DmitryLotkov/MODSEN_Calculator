@@ -4,13 +4,14 @@ export const OptionChange = styled.option`
   border-radius: 5px;
   font-size: 18px;
   cursor: pointer;
-  border: ${({ theme }) => theme.colors.border};
+  border: 2px solid ${({ theme }) => theme.colors.border};
   background: ${({ theme }) => theme.colors.background};
   color: ${({ theme }) => theme.colors.text};
 `
 export const SelectList = styled.select`
   /*appearance: none;*/
   max-width: 400px;
+  color: ${({ theme }) => theme.colors.text};
   margin-bottom: 32px;
   border-radius: 5px;
   cursor: pointer;

@@ -7,6 +7,7 @@ export const SettingContainer = styled.section`
   padding: 30px 40px;
   background: white;
   background: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.text};
 `
 
 export const ClearButton = styled.button`
@@ -14,6 +15,7 @@ export const ClearButton = styled.button`
   padding: 28px 27px;
   border-radius: 8px;
   cursor: pointer;
+
   text-align: start;
   background: ${({ theme }) =>
     theme.colors.backgroundColor};
@@ -22,7 +24,7 @@ export const ClearButton = styled.button`
   font-weight: 400;
   font-size: 32px;
   line-height: 37px;
-  border: ${({ theme }) => theme.colors.border};
+  border: 2px solid ${({ theme }) => theme.colors.border};
 
   &:hover {
     background: ${({ theme }) =>

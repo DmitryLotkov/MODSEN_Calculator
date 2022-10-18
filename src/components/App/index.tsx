@@ -15,7 +15,7 @@ import { ThemeType } from "../../types"
 function App() {
   const [appTheme, setAppTheme] = useState<ThemeType>("light")
   const themeMode = () => {
-    switch (appTheme){
+    switch (appTheme) {
       case "light":
         return lightTheme
       case "colored":
@@ -24,48 +24,33 @@ function App() {
         return darkTheme
     }
   }
-  const switchTheme = () => {
+  const switchTheme = (theme: ThemeType) => setAppTheme(theme)
 
-    switch (appTheme){
-      case "colored":
-        setAppTheme("dark")
-        break
-      case "dark":
-        setAppTheme("light")
-        break
-      case "light":
-        setAppTheme("colored")
-        break
-    }
-
-  //appTheme === "light" ? setAppTheme("dark") : setAppTheme("light")
-}
-  console.log(appTheme)
-return (
-  <ThemeProvider theme={themeMode()} /*theme={appTheme === "light" ? lightTheme : darkTheme}*/>
-    <Styled.App>
-      <Header />
-      <Routes>
-        <Route
-          path={HOME_PAGE_ROUTE}
-          element={<Calculator />}
-        />
-        <Route
-          path={SETTINGS_PAGE_ROUTE}
-          element={<ControlPanel appTheme={appTheme} switchTheme={switchTheme} />}
-        />
-        <Route
-          path={ANY_PAGE_ROUTE}
-          element={<Navigate to={ERROR404_PAGE_ROUTE} />}
-        />
-        <Route
-          path={ERROR404_PAGE_ROUTE}
-          element={<div>Error 404</div>}
-        />
-      </Routes>
-    </Styled.App>
-  </ThemeProvider>
-)
+  return (
+    <ThemeProvider theme={themeMode()}>
+      <Styled.App>
+        <Header />
+        <Routes>
+          <Route
+            path={HOME_PAGE_ROUTE}
+            element={<Calculator />}
+          />
+          <Route
+            path={SETTINGS_PAGE_ROUTE}
+            element={<ControlPanel appTheme={appTheme} switchTheme={switchTheme} />}
+          />
+          <Route
+            path={ANY_PAGE_ROUTE}
+            element={<Navigate to={ERROR404_PAGE_ROUTE} />}
+          />
+          <Route
+            path={ERROR404_PAGE_ROUTE}
+            element={<div>Error 404</div>}
+          />
+        </Routes>
+      </Styled.App>
+    </ThemeProvider>
+  )
 }
 
 export default App

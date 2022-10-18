@@ -6,6 +6,5 @@ export const App = styled.div`
   height: 100%;
   margin-left: auto;
   margin-right: auto;
-  border: 1px solid yellow;
   background-color: ${white};
 `

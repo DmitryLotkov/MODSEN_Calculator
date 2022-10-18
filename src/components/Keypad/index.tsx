@@ -3,10 +3,6 @@ import * as Styled from "./components"
 import { ButtonOperationType, ButtonsType, KeyPadPropsType, OperatorValueType } from "../../types"
 import { Button } from "../Button/Button"
 
-
-
-
-
 export const Keypad = ({actionToPerform, allClear, screenValue}:KeyPadPropsType) => {
 
   const buttons:ButtonsType = [

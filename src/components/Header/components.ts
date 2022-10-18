@@ -12,6 +12,7 @@ export const Header = styled.header`
   align-items: center;
   background: ${({ theme }) => theme.colors.header};
   justify-content: space-between;
+  padding-right: 32px;
 `
 
 export const AppTitle = styled.div`

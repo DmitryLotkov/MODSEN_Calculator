@@ -19,8 +19,17 @@ export type ButtonType = {
 export type ButtonsType = Array<ButtonType>
 export type ThemeType = "light" | "dark" | "colored"
 export type ControlPanelPropsType = {
-  switchTheme: () => void
+  switchTheme: (appTheme:ThemeType) => void
   appTheme: ThemeType
+}
+export type ButtonPropsType = {
+  value: OperatorValueType,
+  onClick: (
+    value: OperatorValueType,
+    type: ButtonOperationType,
+  ) => void,
+  label: string,
+  type: ButtonOperationType,
 }
 
 

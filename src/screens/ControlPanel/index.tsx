@@ -6,10 +6,10 @@ import { clearHistoryAC } from "../../BLL/calculatorReduser"
 import { ControlPanelPropsType } from "../../types"
 
 
-export const ControlPanel = ({switchTheme, appTheme}:ControlPanelPropsType) => {
 
+export const ControlPanel = ({switchTheme, appTheme}:ControlPanelPropsType) => {
   const dispatch = useDispatch()
-  const historyHandler = () =>{
+  const historyHandler = () => {
     dispatch(clearHistoryAC())
   }
   return (

@@ -67,7 +67,7 @@ export const lightTheme = {
     backgroundHover: lightGray,
     backgroundColor: buttonBGColor,
     text: black,
-    border: `2px solid ${borderColor}`,
+    border: borderColor,
   },
 }
 
@@ -78,14 +78,14 @@ export const darkTheme = {
     backgroundHover: gray,
     backgroundColor: darkGray,
     text: white,
-    border: `2px solid ${white}`,
+    border: white,
   },
 }
 export const coloredTheme = {
   colors: {
     header: darkGray,
     background: primary,
-    border: `2px solid ${white}`,
+    border: white,
     backgroundHover: gray,
     backgroundColor: primary,
     text: white,
