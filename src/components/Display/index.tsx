@@ -5,5 +5,11 @@ import { useAppSelector } from "../../BLL/store"
 
 export const Display = () => {
   const screenValue = useAppSelector<string>(state => state.keyPadPage.screenValue)
-  return <Styled.Display>{screenValue}</Styled.Display>
+  const result = useAppSelector<string>(state => state.keyPadPage.result)
+  return (
+    <Styled.Display>
+      <Styled.DisplayScreenValueItem>{screenValue}</Styled.DisplayScreenValueItem>
+      <Styled.DisplayResultItem>{result}</Styled.DisplayResultItem>
+    </Styled.Display>
+  )
 }

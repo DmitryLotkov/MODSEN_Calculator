@@ -1,10 +1,10 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 import * as Styled from "./components"
 import { useAppSelector } from "../../BLL/store"
 import { AdditionalOperatorType, ButtonOperationType, NumericValueType, OperatorValueType } from "../../types"
 import { useDispatch } from "react-redux"
-import { setHistoryAC, setIsOperationFinishedAC, setScreenValueAC } from "../../BLL/calculatorReduser"
+import { setHistoryAC, setIsOperationFinishedAC, setResultAC, setScreenValueAC } from "../../BLL/calculatorReduser"
 import { Display } from "../../components/Display"
 import { Keypad } from "../../components/Keypad"
 import { History } from "../../components/History/HistoryFC"
@@ -20,12 +20,30 @@ export const Calculator = () => {
   const isOperationFinished = useAppSelector<boolean>(state => state.keyPadPage.isOperationFinished)
   const isScreenClear = screenValue === "0"
 
-  const [isHistoryOpen, setIsHistoryOpen] = useState<boolean>(false)
+  const [isHistoryOpen, setIsHistoryOpen] = useState<boolean>(true)
 
-  const handleOpenHistory = ()=> {
-    console.log("clicked")
-    setIsHistoryOpen(!isHistoryOpen)
+  const clearLastDigit = () => {
+    if (screenValue !== "0"){
+      dispatch(setScreenValueAC((screenValue.substring(0, screenValue.length - 1)), "numeric"))
+      dispatch(setIsOperationFinishedAC(false))
+    }
+    if(screenValue === ""){
+      dispatch(setScreenValueAC("0", "operator"))
+    }
   }
+  const handleKeyDown = (e:KeyboardEvent) => {
+    if (e.key === 'Backspace') {
+      e.preventDefault();
+      clearLastDigit();
+    }
+  }
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown',handleKeyDown);
+  }, [screenValue]);
+
+  const handleOpenHistory = ()=> setIsHistoryOpen(!isHistoryOpen)
+
   const clearScreen = () => {
     dispatch(setScreenValueAC("0", "fx"))
   }
@@ -42,7 +60,8 @@ export const Calculator = () => {
 
   const allClear = () => {
     dispatch(setScreenValueAC("0", "fx"))
-    dispatch(setIsOperationFinishedAC(false))
+    /*dispatch(setIsOperationFinishedAC(false))*/
+    dispatch(setResultAC(""))
   }
 
   const handleClickFunctionKey = (value: OperatorValueType) => {
@@ -64,6 +83,7 @@ export const Calculator = () => {
     if (isOperationFinished) {
       dispatch(setScreenValueAC(String(inputValue), keyType))
       dispatch(setIsOperationFinishedAC(false))
+      dispatch(setResultAC(""))
     } else {
       dispatch(setScreenValueAC(
         screenValue === "0" ? String(inputValue) : screenValue + inputValue, keyType))
@@ -73,38 +93,34 @@ export const Calculator = () => {
   const handleClickResultKey = () => {
     const lastValue = screenValue[screenValue.length - 1]
     const firstValue = screenValue[0]
-    const secondValue = screenValue[1]
     dispatch(setIsOperationFinishedAC(true))
     try {
-      if (operatorRegExp.test(firstValue) && (firstValue !== "-" && firstValue !== "+") || operatorRegExp.test(lastValue)) {
+      if (operatorRegExp.test(firstValue) && (firstValue !== "-" && firstValue !== "+") || operatorRegExp.test(lastValue)) { //handle unfinished operation
         dispatch(setIsOperationFinishedAC(false))
         dispatch(setScreenValueAC(screenValue.replace(operatorRegExp, ""), "numeric"))
         return
       }
-      if (!numbersRegExp.test(screenValue)) {
-
+      if (!numbersRegExp.test(screenValue)) { //deleting extra parenthesis case
         dispatch(setIsOperationFinishedAC(false))
         dispatch(setScreenValueAC(screenValue.replace(parenthesisRegExp, ""), "numeric"))
         dispatch(setScreenValueAC("0", "numeric"))
         return
       }
-      if (firstValue === "-" && secondValue === "-") {
-        return //добавить предохранитель
-      }
       if (isParenthesisBalanced(screenValue)) {
 
         dispatch(setHistoryAC(screenValue))
-        dispatch(setScreenValueAC(roundUpNumber(eval(screenValue)), "operator"))
+        dispatch(setScreenValueAC(roundUpNumber(eval(screenValue)), "result"))
+        dispatch(setResultAC(roundUpNumber(eval(screenValue))))
+
       } else {
-        dispatch(setIsOperationFinishedAC(false))
-        dispatch(setScreenValueAC(screenValue.replace(parenthesisRegExp, ""), "operator"))
-        dispatch(setScreenValueAC(roundUpNumber(eval(screenValue.replace(parenthesisRegExp, ""))), "numeric"))
+        dispatch(setScreenValueAC(screenValue.replace(parenthesisRegExp, ""), "result"))
+        dispatch(setScreenValueAC(screenValue, "result"))
+        dispatch(setResultAC(roundUpNumber(eval(screenValue.replace(parenthesisRegExp, "")))))
         dispatch(setHistoryAC(screenValue.replace(parenthesisRegExp, "")))
-        dispatch(setIsOperationFinishedAC(true))
       }
 
     } catch (e: any) {
-      dispatch(setScreenValueAC(e.toString(), "operator"))
+      dispatch(setScreenValueAC(e.toString(), "result"))
     }
   }
 
@@ -130,7 +146,7 @@ export const Calculator = () => {
       <Styled.Main>
         <Styled.Section>
           <Display />
-          <Styled.HistoryButton onClick={ handleOpenHistory}>{isHistoryOpen ? '▷' : '◁'}</Styled.HistoryButton>
+          <Styled.HistoryButton onClick={handleOpenHistory}>{isHistoryOpen ? '▷' : '◁'}</Styled.HistoryButton>
           <Keypad actionToPerform={handleActionToPerform}
                   allClear={isScreenClear}
                   screenValue={screenValue} />

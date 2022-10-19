@@ -38,7 +38,7 @@ export const HistoryItem = styled.div`
   font-weight: 400;
   font-size: 36px;
   line-height: 41px;
-  margin-top: 30px;
+  margin-top: 20px;
 `
 export const HistoryCleanButton = styled.button`
   box-sizing: border-box;

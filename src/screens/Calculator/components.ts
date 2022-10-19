@@ -22,6 +22,7 @@ export const HistoryButton = styled.button`
   background: ${({ theme }) => theme.colors.background};
   color: ${({ theme }) => theme.colors.text};
   font-size: 20px;
+  z-index: 1;
 
   &:hover {
     background: ${({ theme }) =>

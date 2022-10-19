@@ -25,8 +25,10 @@ export const Button = ({
     <Styled.Button
       onClick={handleButtonClick}
       disabled={
-        lastOperatorType === 'operator' &&
-        type === 'operator'
+        (lastOperatorType === 'operator' && //forbid pressing extra operator buttons one after another
+          type === 'operator') ||
+        (lastOperatorType === 'result' && //forbid setting extra same history items
+          type === 'result')
       }>
       {label}
     </Styled.Button>
