@@ -16,7 +16,10 @@ export const Button = ({
     useAppSelector <
     ButtonOperationType >
     ((state) => state.keyPadPage.lastButtonType)
-
+  const isOperationFinished =
+    useAppSelector <
+    boolean >
+    ((state) => state.keyPadPage.isOperationFinished)
   const handleButtonClick = () => {
     onClick(value, type)
   }
@@ -28,7 +31,8 @@ export const Button = ({
         (lastOperatorType === 'operator' && //forbid pressing extra operator buttons one after another
           type === 'operator') ||
         (lastOperatorType === 'result' && //forbid setting extra same history items
-          type === 'result')
+          type === 'result') ||
+        (isOperationFinished && type === 'operator')
       }>
       {label}
     </Styled.Button>

@@ -4,6 +4,7 @@ import * as Styled from "./component"
 import { useDispatch } from "react-redux"
 import { clearHistoryAC } from "../../BLL/calculatorReduser"
 import { ControlPanelPropsType } from "../../types"
+import { allClear } from "../../utils/allClearFunction"
 
 
 
@@ -11,6 +12,7 @@ export const ControlPanel = ({switchTheme, appTheme}:ControlPanelPropsType) => {
   const dispatch = useDispatch()
   const historyHandler = () => {
     dispatch(clearHistoryAC())
+    allClear(dispatch)
   }
   return (
     <Styled.SettingContainer>

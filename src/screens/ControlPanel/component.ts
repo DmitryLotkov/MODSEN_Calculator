@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const SettingContainer = styled.section`
-  height: 856px;
+  height: 857px;
   display: flex;
   flex-direction: column;
   padding: 30px 40px;

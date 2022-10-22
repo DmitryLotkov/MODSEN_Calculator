@@ -1,9 +1,28 @@
 import React from "react"
-import * as Styled from "./components"
-import { ButtonOperationType, ButtonsType, KeyPadPropsType, OperatorValueType } from "../../types"
-import { Button } from "../Button/Button"
+import * as Styled from "../components"
+import { ActionToPerformType, ButtonOperationType, OperatorValueType } from "../../../types"
+import { Button } from "../../Button/Button"
+import { useAppSelector } from "../../../BLL/store"
+import { isParenthesisBalanced } from "../../../helpers/isParenthesisBalanced"
+import { Dispatch } from "redux"
+import { useDispatch } from "react-redux"
 
-export const Keypad = ({actionToPerform, allClear, screenValue}:KeyPadPropsType) => {
+export type ButtonType = {
+  label: string,
+  value: OperatorValueType
+  type: ButtonOperationType
+}
+
+export type ButtonsType = Array<ButtonType>
+type KeyPadPropsType = {
+  actionToPerform: ActionToPerformType,
+}
+export const Keypad = ({actionToPerform}:KeyPadPropsType) => {
+  const dispatch = useDispatch()
+  const screenValue = useAppSelector<string>(state => state.keyPadPage.screenValue)
+  const isOperationFinished = useAppSelector<boolean>(state => state.keyPadPage.isOperationFinished)
+  const isScreenClear = screenValue === "0"
+  const isBalanced = isParenthesisBalanced(screenValue)
 
   const buttons:ButtonsType = [
     { label: '%', value: '%', type: 'operator' },
@@ -26,14 +45,21 @@ export const Keypad = ({actionToPerform, allClear, screenValue}:KeyPadPropsType)
     { label: '0', value: '0', type: 'numeric' },
     { label: ')', value: ')', type: 'numeric' },
     {
-      label: allClear  ? 'CE' : 'C',
-      value: allClear ? 'CE' : 'C',
+      label: isScreenClear  ? 'CE' : 'C',
+      value: isScreenClear ? 'CE' : 'C',
       type: 'fx',
     },
   ]
 
   const handleClickButton = (value:OperatorValueType, keyType:ButtonOperationType) => {
-    actionToPerform(value, keyType);
+    actionToPerform(
+      value,
+      keyType,
+      screenValue,
+      isOperationFinished,
+      isBalanced,
+      dispatch
+      );
   }
   return (
     <Styled.Keypad>

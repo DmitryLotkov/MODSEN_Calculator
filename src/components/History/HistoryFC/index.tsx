@@ -4,6 +4,7 @@ import { useAppSelector } from "../../../BLL/store"
 import { clearHistoryAC } from "../../../BLL/calculatorReduser"
 import { useDispatch } from "react-redux"
 
+
 export const History = () => {
   const history = useAppSelector<Array<string>>(state => state.keyPadPage.history)
   const dispatch = useDispatch()

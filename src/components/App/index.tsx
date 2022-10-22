@@ -3,13 +3,15 @@ import Header from "../Header"
 import * as Styled from "../../components"
 
 import { Navigate, Route, Routes } from "react-router-dom"
-import { Calculator } from "../../screens/Calculator"
 
-import { ANY_PAGE_ROUTE, ERROR404_PAGE_ROUTE, HOME_PAGE_ROUTE, SETTINGS_PAGE_ROUTE } from "../../constants/router"
+import { ANY_PAGE_ROUTE, CLASS_CALCULATOR_PAGE_ROUTE, ERROR404_PAGE_ROUTE, HOME_PAGE_ROUTE, SETTINGS_PAGE_ROUTE } from "../../constants/router"
 import { ControlPanel } from "../../screens/ControlPanel"
 import { coloredTheme, darkTheme, lightTheme } from "../../styles"
 import { ThemeProvider } from "styled-components"
 import { ThemeType } from "../../types"
+import ErrorBoundary from "../ErrorBoundary"
+import { CalculatorFC } from "../../screens/Calculator/CalculatorFC"
+import { CalculatorContainer } from "../../containers/CalculatorContainer"
 
 
 function App() {
@@ -33,7 +35,11 @@ function App() {
         <Routes>
           <Route
             path={HOME_PAGE_ROUTE}
-            element={<Calculator />}
+            element={<ErrorBoundary><CalculatorFC/></ErrorBoundary>}
+          />
+          <Route
+            path={CLASS_CALCULATOR_PAGE_ROUTE}
+            element={<CalculatorContainer/>}
           />
           <Route
             path={SETTINGS_PAGE_ROUTE}
