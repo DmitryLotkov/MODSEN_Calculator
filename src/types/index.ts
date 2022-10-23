@@ -20,14 +20,6 @@ export type ControlPanelPropsType = {
   // eslint-disable-next-line prettier/prettier
   appTheme: ThemeType
 }
-export type ButtonPropsType = {
-  value: OperatorValueType,
-  onClick: (
-    value: OperatorValueType,
-    type: ButtonOperationType,
-  ) => void,
-  label: string,
-  type: ButtonOperationType,
-}
+
 
 

@@ -64,7 +64,6 @@ export const handleClickResultKey = (dispatch: Dispatch | undefined, screenValue
         dispatch(setResultAC(roundUpNumber(eval(screenValue.replace(emptyParenthesisRegExp, "")))))
 
       } else {
-        /*dispatch(setIsOperationFinishedAC(false))*/
         dispatch(setScreenValueAC(screenValue.replace(extraParenthesisRegExp, "") , "result"))
         dispatch(setResultAC(roundUpNumber(eval(screenValue.replace(extraParenthesisRegExp, "")))))
         dispatch(setHistoryAC(screenValue.replace(extraParenthesisRegExp, "")))

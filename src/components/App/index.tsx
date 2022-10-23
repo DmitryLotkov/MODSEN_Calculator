@@ -39,7 +39,7 @@ function App() {
           />
           <Route
             path={CLASS_CALCULATOR_PAGE_ROUTE}
-            element={<CalculatorContainer/>}
+            element={<ErrorBoundary><CalculatorContainer/></ErrorBoundary>}
           />
           <Route
             path={SETTINGS_PAGE_ROUTE}

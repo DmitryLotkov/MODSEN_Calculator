@@ -25,6 +25,11 @@ class CalculatorCL extends React.Component<CalculatorPropsType, IState> {
       isHistoryOpen:true,
     }
   }
+  /*componentDidUpdate(prevProps: Readonly<CalculatorPropsType>, prevState: Readonly<IState>) {
+    if(this.props.isScreenClear !== prevProps.isScreenClear){
+      this.props.isScreenClear
+    }
+  }*/
 
   handleOpenHistory = () => {
     this.setState((prevState) => ({
@@ -33,6 +38,7 @@ class CalculatorCL extends React.Component<CalculatorPropsType, IState> {
   }
 
   render() {
+
     return (
       <Styled.Main>
         <Styled.Section>

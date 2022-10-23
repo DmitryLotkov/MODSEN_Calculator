@@ -1,13 +1,18 @@
-export function isParenthesisBalanced(str: string) {
-  const stack: Array<string> = []
+export function isParenthesisBalanced(
+  str: string,
+): boolean {
+  const arr = str.split('')
 
-  for (const char of str) {
+  let count = 0
+  for (const char of arr) {
     if (char === '(') {
-      stack.push(char)
-    } else if (stack.pop() !== '(') {
-      return false
+      count++
+    } else if (char === ')') {
+      if (count === 0) {
+        return false
+      }
+      count--
     }
   }
-
-  return stack.length === 0
+  return count === 0
 }
