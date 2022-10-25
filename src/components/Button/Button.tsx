@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import * as Styled from '../Keypad/styled'
 import {
   ButtonOperationType,
@@ -17,7 +17,7 @@ type ButtonPropsType = {
   label: string,
   type: ButtonOperationType,
 }
-export const Button = ({
+export const Button: FC<ButtonPropsType> = ({
   value,
   type,
   label,

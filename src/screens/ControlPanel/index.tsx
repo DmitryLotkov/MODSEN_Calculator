@@ -1,14 +1,15 @@
 import { ThemeSelectorFC } from '../../components/ThemeSelector'
-import * as Styled from "./component"
+import * as Styled from './styled'
+import { useDispatch } from 'react-redux'
+import { clearHistoryAC } from '../../BLL/calculatorReduser'
+import { ControlPanelPropsType } from '../../types'
+import { allClear } from '../../utils/allClearFunction'
+import React, { FC } from 'react'
 
-import { useDispatch } from "react-redux"
-import { clearHistoryAC } from "../../BLL/calculatorReduser"
-import { ControlPanelPropsType } from "../../types"
-import { allClear } from "../../utils/allClearFunction"
-
-
-
-export const ControlPanel = ({switchTheme, appTheme}:ControlPanelPropsType) => {
+export const ControlPanel: FC<ControlPanelPropsType> = ({
+  switchTheme,
+  appTheme,
+}: ControlPanelPropsType) => {
   const dispatch = useDispatch()
   const historyHandler = () => {
     dispatch(clearHistoryAC())
@@ -18,9 +19,13 @@ export const ControlPanel = ({switchTheme, appTheme}:ControlPanelPropsType) => {
     <Styled.SettingContainer>
       <Styled.SettingTitle>Settings</Styled.SettingTitle>
       <Styled.SettingText>Switch Theme</Styled.SettingText>
-      <ThemeSelectorFC appTheme={appTheme} switchTheme={switchTheme}/>
-      <Styled.ClearButton onClick={historyHandler}>Clear All History</Styled.ClearButton>
+      <ThemeSelectorFC
+        appTheme={appTheme}
+        switchTheme={switchTheme}
+      />
+      <Styled.ClearButton onClick={historyHandler}>
+        Clear All History
+      </Styled.ClearButton>
     </Styled.SettingContainer>
-
   )
 }
