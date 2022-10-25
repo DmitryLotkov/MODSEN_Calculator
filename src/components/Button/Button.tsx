@@ -24,23 +24,13 @@ export const Button: FC<ButtonPropsType> = ({
   onClick,
 }: ButtonPropsType) => {
   const dispatch = useDispatch()
-  const lastOperatorType =
-    useAppSelector <
-    ButtonOperationType >
-    ((state) => state.keyPadPage.lastButtonType)
-  const isOperationFinished =
-    useAppSelector <
-    boolean >
-    ((state) => state.keyPadPage.isOperationFinished)
-  const result =
-    useAppSelector <
-    string >
-    ((state) => state.keyPadPage.result)
-  const screenValue =
-    useAppSelector <
-    string >
-    ((state) => state.keyPadPage.result)
 
+  const {
+    screenValue,
+    isOperationFinished,
+    result,
+    lastButtonType,
+  } = useAppSelector(({ keyPadPage }) => keyPadPage)
   useKeyboard(screenValue, dispatch)
 
   const handleButtonClick = () => {
@@ -53,9 +43,9 @@ export const Button: FC<ButtonPropsType> = ({
     <Styled.Button
       onClick={handleButtonClick}
       disabled={
-        (lastOperatorType === 'operator' && //forbid pressing extra operator buttons one after another
+        (lastButtonType === 'operator' && //forbid pressing extra operator buttons one after another
           type === 'operator') ||
-        (lastOperatorType === 'result' && //forbid setting extra same history items
+        (lastButtonType === 'result' && //forbid setting extra same history items
           type === 'result') ||
         (isOperationFinished && type === 'operator') //forbid pressing operator buttons after finishing operations
       }>

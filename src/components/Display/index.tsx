@@ -3,15 +3,9 @@ import * as Styled from './styled'
 import { useAppSelector } from '../../BLL/store'
 
 export const Display: FC = () => {
-  const screenValue =
-    useAppSelector <
-    string >
-    ((state) => state.keyPadPage.screenValue)
-  const result =
-    useAppSelector <
-    string >
-    ((state) => state.keyPadPage.result)
-
+  const { screenValue, result } = useAppSelector(
+    ({ keyPadPage }) => keyPadPage,
+  )
   return (
     <Styled.Display>
       <Styled.DisplayScreenValueItem id={'screenValue'}>

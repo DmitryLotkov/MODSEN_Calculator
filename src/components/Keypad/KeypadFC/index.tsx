@@ -18,11 +18,11 @@ export type ButtonType = {
 
 export const Keypad: FC<KeyPadPropsType> = ({ actionToPerform }: KeyPadPropsType) => {
   const dispatch = useDispatch()
-  const screenValue = useAppSelector<string>(state => state.keyPadPage.screenValue)
-  const isOperationFinished = useAppSelector<boolean>(state => state.keyPadPage.isOperationFinished)
+  const { screenValue, isOperationFinished} = useAppSelector(
+    ({ keyPadPage }) => keyPadPage,
+  )
   const isScreenClear = screenValue === "0"
   const isBalanced = isParenthesisBalanced(screenValue)
-
   const buttons: ButtonsType = getButtons(isScreenClear)
 
   const handleClickButton = (value: OperatorValueType, keyType: ButtonOperationType) => {

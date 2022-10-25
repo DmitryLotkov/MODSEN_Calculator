@@ -5,10 +5,9 @@ import { clearHistoryAC } from '../../../BLL/calculatorReduser'
 import { useDispatch } from 'react-redux'
 
 export const History: FC = () => {
-  const history =
-    useAppSelector <
-    Array <
-    string >> ((state) => state.keyPadPage.history)
+  const { history } = useAppSelector(
+    ({ keyPadPage }) => keyPadPage,
+  )
   const dispatch = useDispatch()
   const historyHandler = () => {
     dispatch(clearHistoryAC())
