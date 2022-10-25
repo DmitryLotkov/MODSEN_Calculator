@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { FC } from 'react'
 import * as Styled from '../styled'
 import { useAppSelector } from '../../../BLL/store'
 import { clearHistoryAC } from '../../../BLL/calculatorReduser'
 import { useDispatch } from 'react-redux'
 
-export const History = () => {
+export const History: FC = () => {
   const history =
     useAppSelector <
     Array <
@@ -14,7 +14,7 @@ export const History = () => {
     dispatch(clearHistoryAC())
   }
   return (
-    <Styled.History>
+    <Styled.History id={'historyContainer'}>
       <Styled.Title>History</Styled.Title>
       <Styled.HistoryCleanButton onClick={historyHandler}>
         Clear history

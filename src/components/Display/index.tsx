@@ -11,12 +11,13 @@ export const Display: FC = () => {
     useAppSelector <
     string >
     ((state) => state.keyPadPage.result)
+
   return (
     <Styled.Display>
-      <Styled.DisplayScreenValueItem>
+      <Styled.DisplayScreenValueItem id={'screenValue'}>
         {screenValue}
       </Styled.DisplayScreenValueItem>
-      <Styled.DisplayResultItem>
+      <Styled.DisplayResultItem id={'result'}>
         {result}
       </Styled.DisplayResultItem>
     </Styled.Display>

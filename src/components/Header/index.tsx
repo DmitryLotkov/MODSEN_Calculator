@@ -27,7 +27,7 @@ export const Header: FC = () => {
             location.pathname === HOME_PAGE_ROUTE
           ).toString()}
           to={HOME_PAGE_ROUTE}>
-          CalculatorFC
+          HomeFC
         </NavbarLink>
         <NavbarLink
           onClick={onClickHandler}
@@ -36,7 +36,7 @@ export const Header: FC = () => {
             CLASS_CALCULATOR_PAGE_ROUTE
           ).toString()}
           to={CLASS_CALCULATOR_PAGE_ROUTE}>
-          CalculatorCL
+          HomeCL
         </NavbarLink>
         <NavbarLink
           onClick={onClickHandler}

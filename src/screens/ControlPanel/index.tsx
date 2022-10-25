@@ -16,7 +16,7 @@ export const ControlPanel: FC<ControlPanelPropsType> = ({
     allClear(dispatch)
   }
   return (
-    <Styled.SettingContainer>
+    <Styled.SettingContainer id={'settingsSection'}>
       <Styled.SettingTitle>Settings</Styled.SettingTitle>
       <Styled.SettingText>Switch Theme</Styled.SettingText>
       <ThemeSelectorFC
