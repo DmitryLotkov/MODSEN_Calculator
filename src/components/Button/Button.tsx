@@ -1,5 +1,5 @@
 import React from 'react'
-import * as Styled from '../Keypad/components'
+import * as Styled from '../Keypad/styled'
 import {
   ButtonOperationType,
   OperatorValueType,

@@ -5,5 +5,4 @@ dist
 reportWebVitals.ts
 globalStyles.ts
 theme.js
-index.tsx
-
+App.tsx

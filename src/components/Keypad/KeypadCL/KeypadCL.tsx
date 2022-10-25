@@ -4,20 +4,20 @@ import {
   OperatorValueType,
 } from "../../../types"
 import { CalculatorPropsType } from "../../../screens/Calculator/CalculatorCL/CalculatorCL"
-import { ButtonsType } from "../KeypadFC"
 import { Button } from "../../Button/Button"
 import { isParenthesisBalanced } from "../../../helpers/isParenthesisBalanced"
-import * as Styled from "../components"
+import * as Styled from "../styled"
 import { getButtons } from "../../../constants/getButtons"
+import { ButtonsType } from "../KeypadFC/types"
 
-type IState = Record<string, unknown>
 
-class KeypadCl extends React.Component<CalculatorPropsType, IState> {
+class KeypadCl extends React.Component<CalculatorPropsType> {
   constructor(props: CalculatorPropsType) {
     super(props)
   }
-  buttons:ButtonsType = []
-  isBalanced = isParenthesisBalanced(this.props.screenValue)
+
+  buttons: ButtonsType = []
+  isBalanced = false
   handleClickButton = (
     value: OperatorValueType,
     keyType: ButtonOperationType,
@@ -31,9 +31,10 @@ class KeypadCl extends React.Component<CalculatorPropsType, IState> {
     )
   }
 
+
   render() {
     this.buttons = getButtons(this.props.isScreenClear)
-
+    this.isBalanced = isParenthesisBalanced(this.props.screenValue)
     return (
       <Styled.Keypad>
         {this.buttons.map((btn, i) => (

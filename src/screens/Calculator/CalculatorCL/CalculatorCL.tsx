@@ -1,10 +1,9 @@
 import React from "react"
-import * as Styled from "../components"
+import * as Styled from "../styled"
 import { Display } from "../../../components/Display"
-import { History } from "../../../components/History/HistoryFC"
 import { ActionToPerformType } from "../../../types"
-
 import KeypadCl from "../../../components/Keypad/KeypadCL/KeypadCL"
+import { HistoryContainer } from "../../../containers/HistoryContainer"
 
 
 export type CalculatorPropsType = {
@@ -25,11 +24,6 @@ class CalculatorCL extends React.Component<CalculatorPropsType, IState> {
       isHistoryOpen:true,
     }
   }
-  /*componentDidUpdate(prevProps: Readonly<CalculatorPropsType>, prevState: Readonly<IState>) {
-    if(this.props.isScreenClear !== prevProps.isScreenClear){
-      this.props.isScreenClear
-    }
-  }*/
 
   handleOpenHistory = () => {
     this.setState((prevState) => ({
@@ -54,7 +48,7 @@ class CalculatorCL extends React.Component<CalculatorPropsType, IState> {
             isOperationFinished={this.props.isOperationFinished}
           />
         </Styled.Section>
-        {this.state.isHistoryOpen && <History />}
+        {this.state.isHistoryOpen && <HistoryContainer/>}
       </Styled.Main>
     )
   }

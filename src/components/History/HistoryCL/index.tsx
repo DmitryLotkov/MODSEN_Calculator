@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
 
-import * as Styled from '../components'
+import * as Styled from '../styled'
 
-export class History extends Component {
-  constructor(props) {
+type HistoryPropsType = {
+  history: Array<string>,
+  deleteAllHistory: () => void,
+}
+
+export class HistoryCL extends Component<HistoryPropsType> {
+  constructor(props: HistoryPropsType) {
     super(props)
   }
 
@@ -13,6 +18,10 @@ export class History extends Component {
     return (
       <Styled.History>
         <Styled.Title>History</Styled.Title>
+        <Styled.HistoryCleanButton
+          onClick={deleteAllHistory}>
+          Clear history
+        </Styled.HistoryCleanButton>
         {history.map((item, index) => (
           <Styled.HistoryItem key={index}>
             {item}

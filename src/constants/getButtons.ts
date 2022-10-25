@@ -1,5 +1,4 @@
-import { ButtonsType } from '../components/Keypad/KeypadFC'
-
+import { ButtonsType } from '../components/Keypad/KeypadFC/types'
 export function getButtons(
   isScreenClear: boolean,
 ): ButtonsType {
