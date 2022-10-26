@@ -10,8 +10,8 @@ import {
   ERROR404_PAGE_ROUTE,
   HOME_PAGE_ROUTE,
   SETTINGS_PAGE_ROUTE,
-} from './constants/router'
-import { ControlPanel } from './screens/ControlPanel'
+} from '@constants/router'
+import { ControlPanel } from '@screens/ControlPanel'
 import {
   coloredTheme,
   darkTheme,
@@ -20,9 +20,9 @@ import {
 import { ThemeProvider } from 'styled-components'
 import { ThemeType } from './types'
 import ErrorBoundary from './components/ErrorBoundary'
-import { CalculatorFC } from './screens/Calculator/CalculatorFC'
-import { CalculatorContainer } from './containers/CalculatorContainer'
-import { Header } from './components/Header'
+import { CalculatorFC } from '@screens/Calculator/CalculatorFC'
+import { CalculatorContainer } from "@containers/CalculatorContainer"
+import { Header } from '@components/Header'
 
 function App():JSX.Element {
   const [appTheme, setAppTheme] = useState <ThemeType>('light')

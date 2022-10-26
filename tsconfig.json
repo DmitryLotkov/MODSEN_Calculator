@@ -17,6 +17,7 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
+    "useUnknownInCatchVariables": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
@@ -24,7 +25,37 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": [
+        "components/*"
+      ],
+      "@store/*": [
+        "store/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ],
+      "@screens/*": [
+        "screens/*"
+      ],
+      "@helpers/*": [
+        "helpers/*"
+      ],
+      "@styles/*": [
+        "styles/*"
+      ],
+      "@constants/*": [
+        "constants/*"
+      ],
+      "@containers/*": [
+        "containers/*"
+      ],
+    }
+  },
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
   },
   "include": [
     "src",

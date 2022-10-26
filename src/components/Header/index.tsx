@@ -4,7 +4,7 @@ import {
   CLASS_CALCULATOR_PAGE_ROUTE,
   HOME_PAGE_ROUTE,
   SETTINGS_PAGE_ROUTE,
-} from '../../constants/router'
+} from '@constants/router'
 import { NavbarLink } from './styled'
 import { useLocation } from 'react-router-dom'
 

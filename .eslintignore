@@ -6,3 +6,5 @@ reportWebVitals.ts
 globalStyles.ts
 theme.js
 App.tsx
+config-overrides.js
+craco.config.js

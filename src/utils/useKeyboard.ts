@@ -3,7 +3,7 @@ import {
   ActionsType,
   setIsOperationFinishedAC,
   setScreenValueAC,
-} from '../BLL/calculatorReduser'
+} from '@store/calculatorReduser'
 
 export function useKeyboard(
   screenValue: string,

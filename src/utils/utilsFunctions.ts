@@ -1,6 +1,6 @@
-import { emptyParenthesisRegExp, numbersRegExp, operatorRegExp, extraParenthesisRegExp } from "../constants/regExp"
-import { setHistoryAC, setIsOperationFinishedAC, setResultAC, setScreenValueAC } from "../BLL/calculatorReduser"
-import { roundUpNumber } from "../helpers/roundUpNumber"
+import { emptyParenthesisRegExp, numbersRegExp, operatorRegExp, extraParenthesisRegExp } from "@constants/regExp"
+import { setHistoryAC, setIsOperationFinishedAC, setResultAC, setScreenValueAC } from "@store/calculatorReduser"
+import { roundUpNumber } from "@helpers/roundUpNumber"
 import { Dispatch } from "redux"
 import { AdditionalOperatorType, ButtonOperationType, NumericValueType, OperatorValueType } from "../types"
 import { allClear } from "./allClearFunction"
@@ -68,8 +68,9 @@ export const handleClickResultKey = (dispatch: Dispatch | undefined, screenValue
         dispatch(setResultAC(roundUpNumber(eval(screenValue.replace(extraParenthesisRegExp, "")))))
         dispatch(setHistoryAC(screenValue.replace(extraParenthesisRegExp, "")))
       }
-      // eslint-disable-next-line prettier/prettier
-    } catch (e:any) {
+
+    } catch (e) {
+      if (e instanceof Error)
       dispatch(setScreenValueAC(e.toString(), "result"))
     }
   }
@@ -87,6 +88,7 @@ export const handleActionToPerform = (value: OperatorValueType,
       handleClickFunctionKey(value, dispatch, screenValue)
       break
     case "numeric":
+      // eslint-disable-next-line prettier/prettier
       handleClickNumericOperatorKey(value as NumericValueType | AdditionalOperatorType,
         keyType,
         dispatch,

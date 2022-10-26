@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import * as Styled from './styled'
-import { useAppSelector } from '../../BLL/store'
+import { useAppSelector } from '@store/store'
 
 export const Display: FC = () => {
   const { screenValue, result } = useAppSelector(

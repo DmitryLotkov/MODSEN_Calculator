@@ -2,7 +2,7 @@ import {
   ActionsType,
   setResultAC,
   setScreenValueAC,
-} from '../BLL/calculatorReduser'
+} from '@store/calculatorReduser'
 import { Dispatch } from 'react'
 
 export const allClear = (

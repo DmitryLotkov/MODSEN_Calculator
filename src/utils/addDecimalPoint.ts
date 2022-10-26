@@ -2,7 +2,7 @@ import { Dispatch } from 'redux'
 import {
   setIsOperationFinishedAC,
   setScreenValueAC,
-} from '../BLL/calculatorReduser'
+} from '@store/calculatorReduser'
 
 export const addDecimalPoint = (
   dispatch: Dispatch,

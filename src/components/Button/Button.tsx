@@ -4,8 +4,8 @@ import {
   ButtonOperationType,
   OperatorValueType,
 } from '../../types'
-import { useAppSelector } from '../../BLL/store'
-import { useKeyboard } from '../../utils/useKeyboard'
+import { useAppSelector } from '@store/store'
+import { useKeyboard } from '@utils/useKeyboard'
 import { useDispatch } from 'react-redux'
 
 type ButtonPropsType = {

@@ -1,9 +1,9 @@
-import { ThemeSelectorFC } from '../../components/ThemeSelector'
+import { ThemeSelectorFC } from '@components/ThemeSelector'
 import * as Styled from './styled'
 import { useDispatch } from 'react-redux'
-import { clearHistoryAC } from '../../BLL/calculatorReduser'
+import { clearHistoryAC } from '@store/calculatorReduser'
 import { ControlPanelPropsType } from '../../types'
-import { allClear } from '../../utils/allClearFunction'
+import { allClear } from '@utils/allClearFunction'
 import React, { FC } from 'react'
 
 export const ControlPanel: FC<ControlPanelPropsType> = ({

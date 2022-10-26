@@ -1,10 +1,10 @@
 import React from "react"
 import { connect } from "react-redux"
 import { Dispatch } from "redux"
-import { AppStoreType } from "../BLL/store"
+import { AppStoreType } from "@store/store"
 import { AdditionalOperatorType, ButtonOperationType, NumericValueType, OperatorValueType } from "../types"
 import CalculatorCL from "../screens/Calculator/CalculatorCL/CalculatorCL"
-import { handleClickFunctionKey, handleClickNumericOperatorKey, handleClickResultKey } from "../utils/utilsFunctions"
+import { handleClickFunctionKey, handleClickNumericOperatorKey, handleClickResultKey } from "@utils/utilsFunctions"
 
 
 const mapStateToProps = (state: AppStoreType) => {

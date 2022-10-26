@@ -3,11 +3,11 @@ import {
   ButtonOperationType,
   OperatorValueType,
 } from "../../../types"
-import { CalculatorPropsType } from "../../../screens/Calculator/CalculatorCL/CalculatorCL"
+import { CalculatorPropsType } from "@screens/Calculator/CalculatorCL/CalculatorCL"
 import { Button } from "../../Button/Button"
-import { isParenthesisBalanced } from "../../../helpers/isParenthesisBalanced"
+import { isParenthesisBalanced } from "@helpers/isParenthesisBalanced"
 import * as Styled from "../styled"
-import { getButtons } from "../../../constants/getButtons"
+import { getButtons } from "@constants/getButtons"
 import { ButtonsType } from "../KeypadFC/types"
 
 

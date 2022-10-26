@@ -1,6 +1,6 @@
 // types
 import { ButtonOperationType } from "../types"
-import { maxHistoryItemsCount } from "../constants/maxHistoryitemsCount"
+import { maxHistoryItemsCount } from "@constants/maxHistoryitemsCount"
 
 // eslint-disable-next-line prettier/prettier
 export enum ACTIONS_TYPE {

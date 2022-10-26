@@ -1,14 +1,15 @@
-import React, { FC } from "react"
-import * as Styled from "../styled"
-import { ButtonOperationType, OperatorValueType } from "../../../types"
-import { Button } from "../../Button/Button"
-import { useAppSelector } from "../../../BLL/store"
-import { isParenthesisBalanced } from "../../../helpers/isParenthesisBalanced"
-import { useDispatch } from "react-redux"
-import { getButtons } from "../../../constants/getButtons"
+import React, { FC } from 'react'
+import * as Styled from '../styled'
+import { ButtonOperationType, OperatorValueType } from '../../../types'
+import { Button } from '../../Button/Button'
+import { useAppSelector } from '@store/store'
+import { isParenthesisBalanced } from '@helpers/isParenthesisBalanced'
+import { useDispatch } from 'react-redux'
+import { getButtons } from '@constants/getButtons'
 import { ButtonsType, KeyPadPropsType } from "./types"
 
 export type ButtonType = {
+
   label: string,
   value: OperatorValueType
   // eslint-disable-next-line prettier/prettier

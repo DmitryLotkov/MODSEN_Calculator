@@ -1,9 +1,10 @@
 import React from "react"
 import * as Styled from "../styled"
-import { Display } from "../../../components/Display"
+import { Display } from "@components/Display"
+import KeypadCl from "@components/Keypad/KeypadCL/KeypadCL"
+import { HistoryContainer } from "@containers/HistoryContainer"
 import { ActionToPerformType } from "../../../types"
-import KeypadCl from "../../../components/Keypad/KeypadCL/KeypadCL"
-import { HistoryContainer } from "../../../containers/HistoryContainer"
+
 
 
 export type CalculatorPropsType = {

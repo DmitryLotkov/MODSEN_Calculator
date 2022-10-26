@@ -1,8 +1,9 @@
 import React, { FC } from 'react'
 import * as Styled from '../styled'
-import { useAppSelector } from '../../../BLL/store'
-import { clearHistoryAC } from '../../../BLL/calculatorReduser'
+
 import { useDispatch } from 'react-redux'
+import { useAppSelector } from '@store/store'
+import { clearHistoryAC } from '@store/calculatorReduser'
 
 export const History: FC = () => {
   const { history } = useAppSelector(
